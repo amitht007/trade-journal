@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.color-empty {
+  fill: #eeeeee;
+}
+
+.color-profit {
+  fill: green; /* Color for profit */
+}
+
+.color-loss {
+  fill: red; /* Color for loss */
+}
+
+.react-calendar-heatmap .color-empty,
+.react-calendar-heatmap .color-profit,
+.react-calendar-heatmap .color-loss {
+  width: 10px; /* Adjust cell size */
+  height: 10px; /* Adjust cell size */
+}
