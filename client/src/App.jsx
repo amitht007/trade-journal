@@ -1,31 +1,25 @@
 import React, { useEffect } from "react";
 import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
 import "./index.css";
-import Records from "./components/Records";
 import Footer from "./components/Footer";
-import PLCalendar from "./components/Calendar";
-import Dashboard from "./components/Dashboard";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import siteVid from "./assets/siteVid.gif";
-import pencil0 from "./assets/pencil0.svg";
-import rupee0 from "./assets/rupee0.svg";
-import page0 from "./assets/page0.svg";
-import scribble from "./assets/scribble.svg";
-import Calendar from "./components/Calendar";
-import download from "./assets/download.svg";
 import gsap from "gsap";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { ScrollTrigger } from "gsap/all";
 import LoginPage from "./pages/LoginPage";
-
+import DemoLand from "./pages/DemoLand";
+import RegisterPage from "./pages/RegisterPage";
+import HomePage from "./pages/HomePage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Navbar from "./components/Navbar";
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 
 const App = () => {
   const recordsRef = useRef(null);
-
   const triggerToast = (message) => {
     toast(message, {
       position: "top-right",
@@ -37,7 +31,6 @@ const App = () => {
       progress: undefined,
     });
   };
-
   const triggerToastWarn = (message) => {
     toast.warn(message, {
       position: "top-right",
@@ -53,11 +46,20 @@ const App = () => {
   return (
     <ReactLenis root options={{ smoothTouch: true }}>
       <ToastContainer />
-
-      <LoginPage />
-      <div>
-        <Footer />
-      </div>
+      <Routes>
+        <Route path="/" element={<DemoLand />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route
+          path="/homepage"
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+      <Footer />
     </ReactLenis>
   );
 };

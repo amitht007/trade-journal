@@ -1,120 +1,187 @@
-import React from "react";
 import React, { useEffect } from "react";
 import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
 import Records from "../components/Records.jsx";
-import Footer from "../components/Footer";
-import PLCalendar from "../components/Calendar";
-import Dashboard from "../components/Dashboard";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import siteVid from "../assets/siteVid.gif";
-import pencil0 from "../assets/pencil0.svg";
-import rupee0 from "../assets/rupee0.svg";
-import page0 from "../assets/page0.svg";
-import scribble from "../assets/scribble.svg";
 import Calendar from "../components/Calendar";
-import download from "../assets/download.svg";
+import { Link } from "react-router-dom";
+import { motion, useScroll } from "framer-motion";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { ScrollTrigger } from "gsap/all";
+import Navbar from "../components/Navbar.jsx";
+import About from "../components/About.jsx";
+import FAQ from "../components/Faq.jsx";
+import Services from "../components/Services.jsx";
+import ServiceCard from "../components/ServiceCard.jsx";
+import LoginPage from "./LoginPage.jsx";
 
 const DemoLand = () => {
+  const triggerToast = (message) => {
+    toast(message, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const triggerToastWarn = (message) => {
+    toast.warn(message, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   return (
     <ReactLenis
       root
       options={{ smoothTouch: true }}
-      className="snap-y snap-mandatory overflow-y flex-col space-y-4 bg-gradient-to-b overflow-x-hidden"
+      className="w-full h-screen"
     >
-      <div className="bg-white z-50 text-center font-bold text-4xl py-4 text-black shadow-md sticky top-0">
-        <h3 className=" drop-shadow-lg">Take Notes Instantly!</h3>{" "}
-      </div>
-      <div className="w-full h-full absolute top-6 -z-10 overflow-hidden">
-        <div className="absolute blur-[3px]	top-[20%] left-[20%] ">
-          <img src={pencil0} className="w-[50px] h-[40px] " />
-        </div>
-        <div className="absolute blur-[1px]	-rotate-45 top-[6%] left-[50%] ">
-          <img src={page0} className="w-[50px] h-[40px] " />
-        </div>
-        <div className="absolute blur-[1px] top-[170px] right-[20px]">
-          <img src={pencil0} className="w-[80px] h-[100px] " />
-        </div>
-
-        <div className="absolute blur-[1px] w-full h-full	 top-[40px] transform scale-x-[-1]">
-          <img src={scribble} className="w-[30%] h-[60px] " />
-        </div>
-        <div className="absolute blur-[2px] w-full h-full	 top-[40%] left-[10%] items-center ">
-          <img src={scribble} className="w-[10%] h-[10%] " />
-        </div>
-
-        <div className="absolute blur-[3px]	top-[180px] left-[20px] transform scale-x-[-1]">
-          <img src={pencil0} className="w-[100px] h-[100px] " />
-        </div>
-
-        <div className="absolute blur-[3px]	 top-[500px] left-[120px] rotate-45  ">
-          <img src={rupee0} className="w-[100px] h-[100px] " />
-        </div>
-
-        <div className="absolute blur-[3px]	 top-[300px] left-[800px] rotate-45  ">
-          <img src={rupee0} className="w-[100px] h-[100px] " />
-        </div>
-
-        <div className="w-full  absolute blur-[3px] left-[50%] top-[400px]	items-center rotate-0 ">
-          <img src={rupee0} className="w-[100px] h-[100px] " />
+      {/* Header */}
+      <Navbar />
+      <div className="w-full text-white fixed bottom-4 left-4 flex ">
+        <div className="flex flex-col gap-y-6 py-4 z-40">
+          <a
+            href="https://x.com/knightHeadHouse"
+            className="p-2 w-10 text-center rounded-[200px] bg-[#464646] hover:bg-[#686868]"
+          >
+            X
+          </a>
+          <a
+            href="https://x.com/knightHeadHouse"
+            className="p-2 w-10 text-center rounded-[200px] bg-[#464646] hover:bg-[#686868]"
+          >
+            X
+          </a>{" "}
+          <a
+            href="https://x.com/knightHeadHouse"
+            className="p-2 w-10 text-center rounded-[200px] bg-[#464646] hover:bg-[#686868]"
+          >
+            X
+          </a>{" "}
         </div>
       </div>
-      <div className="snap-always snap-center z-30 top-[20%] sticky min-width-[50%] h-screen">
-        <img
-          src={siteVid}
-          alt="My SVG"
-          loading="lazy"
-          className="absolute left-[50%] rounded-lg z-40 border-2 border-black sm:min-w-[300px] sm:h-[200px] md:w-[500px] md:h-[200px] lg:w-[550px] lg:h-[350px]"
-        />
-      </div>
 
-      <div
-        className="snap-always snap-center w-full z-50 left-[10%]"
-        id="section1"
-      >
-        <div className=" absolute flex justify-center top-[25%] left-[25%] rounded-lg scale-125 items-center p-1 space-y-2">
-          <div className="place-content-center text-center">
-            <p className="text-4xl ">Have Trouble</p>
-            <p className="text-5xl"> Journalling</p>
-            <p className="text-5xl">Start Here!</p>
-            <div class="hover:cursor-pointer w-auto h-auto flex justify-center flex-col items-center mt-6 bg-blue-200 p-2 rounded-lg">
-              <p class="drop-shadow-md text-blue-950 font-bold hover:cursor-pointer">
-                DOWNLOAD EXTENSION FROM HERE!
-              </p>
-              <img src={download} class=" hover:cursor-pointer w-16 h-16" />
+      <div className="bg-black flex h-auto w-full justify-around pt-16">
+        <div className="bg-gradient-to-tr bg-black w-[1400px] overflow-x-hidden">
+          <div className="w-[1400px]">
+            {/* Two-column Grid for Records and Image */}
+            <div className="grid grid-cols-2 gap-[0px] w-full h-auto relative">
+              {/* Second Column: Image */}
+              <div className="border-black bg-black w-full h-auto flex justify-center py-6">
+                {/* <img
+                  src={siteVid}
+                  alt="My SVG"
+                  loading="lazy"
+                  className="rounded-lg z-40 border-2 border-black sm:min-w-[300px] sm:h-[200px] md:w-[500px] md:h-[200px] lg:w-[550px] lg:h-[350px]"
+                /> */}
+                <motion.h1
+                  initial={{ opacity: 0, x: -100, y: -50 }} // Starting opacity (before entering viewport)
+                  animate={{ opacity: 1, x: 0, y: 0 }} // Target opacity (after entering viewport)
+                  transition={{ duration: 1 }} // Duration of the animation
+                  whileInView={{ opacity: 1 }} // Ensure opacity remains at 1 when visible
+                  viewport={{ once: true, amount: 1 }} // Trigger animation when 50% of the component is in view
+                  className=" text-8xl z-10 text-[#e1e1e1]"
+                >
+                  Make Your Life Easier, With Our Zero Cost Services.
+                </motion.h1>
+                <div className="bg-[#110f0f] w-[600px] h-[400px] blur-[500px] absolute top-4 left-8 -z-0 rounded-full"></div>
+              </div>
+
+              {/* First Column: Records Component */}
+              <div className="border-black bg-black w-full h-full flex justify-center py-6">
+                <motion.div
+                  initial={{ opacity: 0, x: 100, y: -50 }} // Starting opacity (before entering viewport)
+                  animate={{ opacity: 1, x: 0, y: 0 }} // Target opacity (after entering viewport)
+                  transition={{ duration: 1 }} // Duration of the animation
+                  whileInView={{ opacity: 1 }} // Ensure opacity remains at 1 when visible
+                  viewport={{ once: true, amount: 1 }} // Trigger animation when 50% of the component is in view
+                  className="space-y-4 z-10"
+                >
+                  <h3 className=" text-white text-5xl font-semibold p-3 text-left tracking-widest">
+                    Take Your Notes Here
+                  </h3>
+                  <Records
+                    triggerToast={triggerToast}
+                    triggerToastWarn={triggerToastWarn}
+                  />
+                </motion.div>
+                <div className="bg-[#110f0f] w-[600px] h-[400px] blur-3xl absolute top-4 left-8 -z-0 rounded-full"></div>
+              </div>
+            </div>
+            {/* Calendar Section */}
+            <div className="snap-always z-50 snap-center bg-black w-full flex flex-col my-40">
+              <motion.div
+                initial={{ opacity: 0 }} // Starting opacity (before entering viewport)
+                animate={{ opacity: 1 }} // Target opacity (after entering viewport)
+                transition={{ duration: 2 }} // Duration of the animation
+                whileInView={{ opacity: 1 }} // Ensure opacity remains at 1 when visible
+                viewport={{ once: false, amount: 0.2 }} // Trigger animation when 50% of the component is in view
+                id="section2"
+                className="relative"
+              >
+                <Calendar />
+              </motion.div>
             </div>
           </div>
+          {/* Services Section */}
+          <Services />
+
+          {/* About Section */}
+          <About />
+
+          <div className="w-full h-fit flex justify-around mb-20">
+            {/* Animated Login Button */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }} // Initial state
+              whileInView={{ opacity: 1, scale: 1 }} // Animate when in view
+              viewport={{ amount: 0.2 }} // Re-triggers when 20% of the element is visible
+              transition={{ duration: 0.5 }} // Control the animation speed
+              whileHover={{ scale: 1.05 }} // Hover effect
+            >
+              <Link
+                to="/login"
+                className="bg-white text-black text-center rounded-3xl p-4 flex justify-around text-2xl font-bold w-[300px]"
+              >
+                Log in
+              </Link>
+            </motion.div>
+
+            {/* Animated Sign Up Button */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }} // Initial state
+              whileInView={{ opacity: 1, scale: 1 }} // Animate when in view
+              viewport={{ amount: 0.2 }} // Re-triggers when 20% of the element is visible
+              transition={{ duration: 0.5 }} // Control the animation speed
+              whileHover={{ scale: 1.05 }} // Hover effect
+            >
+              <Link
+                to="/register"
+                className="bg-white text-black text-center rounded-3xl p-4 flex justify-around text-2xl font-bold w-[300px]"
+              >
+                Sign Up
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Toast Notifications */}
+          <ToastContainer />
         </div>
       </div>
 
-      <div
-        className="snap-always z-50 snap-center w-full flex flex-col bg-blue-400 gap-y-20 mb-6 py-6"
-        id="section2"
-      >
-        <div className="relative left-[15%] border-black">
-          <Records
-            triggerToast={triggerToast}
-            triggerToastWarn={triggerToastWarn}
-          />
-        </div>
-        <div className=" relative">
-          <Calendar />
-        </div>{" "}
-      </div>
-
-      <div className="snap-always snap-center bg-pink-400 w-full py-10">
-        <div className=" relative ">
-          <Dashboard />
-        </div>
-      </div>
-      <div className=" relative  top-40">
-        <Footer />
-      </div>
-      <ToastContainer />
+      {/* </div> */}
     </ReactLenis>
   );
 };

@@ -85,8 +85,8 @@ const login = async (req, res) => {
     const token = generateToken(user);
     res.cookie("__Secure-authToken", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV !== "development", // Use 'secure' in production (HTTPS)
-      sameSite: "strict",
+      secure: false, // Use 'secure' in production (HTTPS)
+      sameSite: "None",
       maxAge: 24 * 60 * 60 * 1000,
     });
 
