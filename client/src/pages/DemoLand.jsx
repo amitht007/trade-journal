@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
 import Records from "../components/Records.jsx";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import { motion, useScroll } from "framer-motion";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
 import { ScrollTrigger } from "gsap/all";
 import Navbar from "../components/Navbar.jsx";
 import About from "../components/About.jsx";
@@ -19,6 +18,7 @@ import ServiceCard from "../components/ServiceCard.jsx";
 import LoginPage from "./LoginPage.jsx";
 
 const DemoLand = () => {
+  const aboutRef = useRef(null);
   const triggerToast = (message) => {
     toast(message, {
       position: "top-right",
@@ -50,8 +50,8 @@ const DemoLand = () => {
       className="w-full h-screen"
     >
       {/* Header */}
-      <Navbar />
-      <div className="w-full text-white fixed bottom-4 left-4 flex ">
+      <Navbar aboutRef={aboutRef} />
+      <div className="hidden w-full text-white fixed bottom-4 left-4 xl:flex ">
         <div className="flex flex-col gap-y-6 py-4 z-40">
           <a
             href="https://x.com/knightHeadHouse"
@@ -76,28 +76,22 @@ const DemoLand = () => {
 
       <div className="bg-black flex h-auto w-full justify-around pt-16">
         <div className="bg-gradient-to-tr bg-black w-[1400px] overflow-x-hidden">
-          <div className="w-[1400px]">
+          <div className="xl:w-[1400px]">
             {/* Two-column Grid for Records and Image */}
-            <div className="grid grid-cols-2 gap-[0px] w-full h-auto relative">
+            <div className="xl:grid xl:grid-cols-2 xl:gap-[0px] w-full h-auto xl:relative">
               {/* Second Column: Image */}
-              <div className="border-black bg-black w-full h-auto flex justify-center py-6">
-                {/* <img
-                  src={siteVid}
-                  alt="My SVG"
-                  loading="lazy"
-                  className="rounded-lg z-40 border-2 border-black sm:min-w-[300px] sm:h-[200px] md:w-[500px] md:h-[200px] lg:w-[550px] lg:h-[350px]"
-                /> */}
+              <div className="border-black xl:text-left text-center bg-black w-full h-auto flex justify-around xl:justify-center py-6">
                 <motion.h1
                   initial={{ opacity: 0, x: -100, y: -50 }} // Starting opacity (before entering viewport)
                   animate={{ opacity: 1, x: 0, y: 0 }} // Target opacity (after entering viewport)
                   transition={{ duration: 1 }} // Duration of the animation
                   whileInView={{ opacity: 1 }} // Ensure opacity remains at 1 when visible
                   viewport={{ once: true, amount: 1 }} // Trigger animation when 50% of the component is in view
-                  className=" text-8xl z-10 text-[#e1e1e1]"
+                  className="px-2 xl:px-0 text-4xl md:text-5xl  xl:text-8xl z-10 text-[#e1e1e1]"
                 >
-                  Make Your Life Easier, With Our Zero Cost Services.
+                  Make Your Life Easier, With Our Trading Solutions!
                 </motion.h1>
-                <div className="bg-[#110f0f] w-[600px] h-[400px] blur-[500px] absolute top-4 left-8 -z-0 rounded-full"></div>
+                <div className=" xl:flex bg-[#110f0f] w-[600px] h-[400px] blur-[500px] absolute top-4 left-8 -z-0 rounded-full"></div>
               </div>
 
               {/* First Column: Records Component */}
@@ -110,7 +104,7 @@ const DemoLand = () => {
                   viewport={{ once: true, amount: 1 }} // Trigger animation when 50% of the component is in view
                   className="space-y-4 z-10"
                 >
-                  <h3 className=" text-white text-5xl font-semibold p-3 text-left tracking-widest">
+                  <h3 className=" text-white text-center text-2xl md:text-5xl font-semibold p-3 md:text-left tracking-widest">
                     Take Your Notes Here
                   </h3>
                   <Records
@@ -122,7 +116,7 @@ const DemoLand = () => {
               </div>
             </div>
             {/* Calendar Section */}
-            <div className="snap-always z-50 snap-center bg-black w-full flex flex-col my-40">
+            <div className="hidden snap-always z-50 snap-center bg-black w-full xl:flex flex-col my-40">
               <motion.div
                 initial={{ opacity: 0 }} // Starting opacity (before entering viewport)
                 animate={{ opacity: 1 }} // Target opacity (after entering viewport)
@@ -140,40 +134,58 @@ const DemoLand = () => {
           <Services />
 
           {/* About Section */}
-          <About />
-
-          <div className="w-full h-fit flex justify-around mb-20">
-            {/* Animated Login Button */}
+          <div id="about-section" ref={aboutRef}>
+            <About />
+          </div>
+          <div className="w-full h-fit flex flex-col justify-center items-center sm:justify-around mb-6">
+            {/* <div className="w-full h-screen flex flex-col items-center justify-center sm:flex-row sm:justify-around mb-20">
+             */}
+            {/* Call to Action */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }} // Initial state
-              whileInView={{ opacity: 1, scale: 1 }} // Animate when in view
-              viewport={{ amount: 0.2 }} // Re-triggers when 20% of the element is visible
-              transition={{ duration: 0.5 }} // Control the animation speed
-              whileHover={{ scale: 1.05 }} // Hover effect
+              className="w-full text-2xl text-center  mb-10 px-4 text-white"
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2 }}
             >
-              <Link
-                to="/login"
-                className="bg-white text-black text-center rounded-3xl p-4 flex justify-around text-2xl font-bold w-[300px]"
-              >
-                Log in
-              </Link>
+              Join us today and start your journey toward a profitable trading
+              career!
             </motion.div>
 
-            {/* Animated Sign Up Button */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }} // Initial state
-              whileInView={{ opacity: 1, scale: 1 }} // Animate when in view
-              viewport={{ amount: 0.2 }} // Re-triggers when 20% of the element is visible
-              transition={{ duration: 0.5 }} // Control the animation speed
-              whileHover={{ scale: 1.05 }} // Hover effect
-            >
-              <Link
-                to="/register"
-                className="bg-white text-black text-center rounded-3xl p-4 flex justify-around text-2xl font-bold w-[300px]"
+            <div className="w-[75%] h-fit flex flex-col justify-center align-center sm:flex-row sm:justify-evenly  mb-20">
+              {/* Animated Login Button */}
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }} // Initial state
+                whileInView={{ opacity: 1, scale: 1 }} // Animate when in view
+                viewport={{ amount: 0.2 }} // Re-triggers when 20% of the element is visible
+                transition={{ duration: 0.5 }} // Control the animation speed
+                whileHover={{ scale: 1.05 }} // Hover effect
+                className="mb-4"
               >
-                Sign Up
-              </Link>
-            </motion.div>
+                <Link
+                  to="/login"
+                  className="bg-white text-black text-center rounded-3xl p-4 flex justify-around text-2xl font-bold w-[300px]"
+                >
+                  Log in
+                </Link>
+              </motion.div>
+
+              {/* Animated Sign Up Button */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }} // Initial state
+                whileInView={{ opacity: 1, scale: 1 }} // Animate when in view
+                viewport={{ amount: 0.2 }} // Re-triggers when 20% of the element is visible
+                transition={{ duration: 0.5 }} // Control the animation speed
+                whileHover={{ scale: 1.05 }} // Hover effect
+              >
+                <Link
+                  to="/register"
+                  className="bg-white text-black text-center rounded-3xl p-4 flex justify-around text-2xl font-bold w-[300px]"
+                >
+                  Sign Up
+                </Link>
+              </motion.div>
+            </div>
           </div>
 
           {/* Toast Notifications */}

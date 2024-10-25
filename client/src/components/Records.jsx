@@ -51,7 +51,6 @@ const Records = ({ triggerToast, triggerToastWarn }) => {
       pnl_field: field.pnl_field,
       note_field: field.note_field,
     });
-    console.log(data);
 
     triggerToast("Record Added to Database!"); // Reset the form fields
     setField({ date_field: indianDate, pnl_field: "", note_field: "" });
@@ -79,15 +78,15 @@ const Records = ({ triggerToast, triggerToastWarn }) => {
   return (
     <div>
       <div className="flex flex-col w-fit gap-1 text-white">
-        <div className="w-full flex">
+        <div className="w-full flex flex-col  md:flex-row">
           <DatePicker
             selected={startDate}
             onChange={handleDateChange}
-            className="w-full bg-black h-16 border-[#5d5d5d] border-b-2  text-2xl p-4 font-semibold mr-1 lg:w-80 lg:h-16 tracking-widest"
+            className="w-full bg-black h-16 border-[#5d5d5d] border-b-2 mb-2 md:mb-0 text-2xl p-4 font-semibold mr-1 lg:w-80 lg:h-16 tracking-widest"
             dateFormat="dd/MM/yyyy"
           />
           <input
-            className="border-[#5d5d5d] border-b-2 bg-[#000000] text-2xl p-4 font-semibold  mr-1 lg:w-80 lg:h-16 "
+            className="border-[#5d5d5d] mb-1 border-b-2 bg-[#000000] text-2xl p-4 font-semibold  mr-1 lg:w-80 lg:h-16 w-full"
             type="text"
             name="pnl_field"
             placeholder={field.pnl_field ? field.pnl_field : "ADD PNL"}
@@ -96,7 +95,7 @@ const Records = ({ triggerToast, triggerToastWarn }) => {
           />
         </div>
         <textarea
-          className="border- border-b-2 bg-[#000000] text-2xl p-4 font-semibold w-100 lg:w-160 min-h-10 lg:min-h-[200px]"
+          className="mb-1 border-b-2 bg-[#000000] text-2xl p-4 font-semibold w-100 lg:w-160 min-h-10 lg:min-h-[200px]"
           type="text"
           id="text-area"
           name="note_field"
@@ -105,14 +104,14 @@ const Records = ({ triggerToast, triggerToastWarn }) => {
           onChange={handleFieldChange}
           rows="4"
         />
-        <div className="w-full flex justify-between">
+        <div className="w-full flex flex-col gap-y-2 md:flex-row justify-between">
           <motion.button
             whileHover={{
               scale: 1.01,
               transition: { duration: 0.5 },
             }}
             whileTap={{ scale: 0.9 }}
-            className="border-2 border-black p-1 w-full  rounded bg-[#efefee] text-[#000000] font-semibold lg:min-h-20 hover:bg-green-400 text-2xl "
+            className="border-2 border-black p-1 py-4 w-full  rounded bg-[#efefee] text-[#000000] font-semibold lg:min-h-20 hover:bg-green-400 text-2xl "
             onClick={addField}
           >
             Click To Add Record
@@ -123,7 +122,7 @@ const Records = ({ triggerToast, triggerToastWarn }) => {
               transition: { duration: 0.5 },
             }}
             whileTap={{ scale: 0.9 }}
-            className="border-2 border-[#383838] p-1 w-full rounded bg-[#151515] text-white font-semibold lg:min-h-20 hover:bg-red-400 hover:text-black text-2xl "
+            className="border-2 border-[#383838] py-4 w-full rounded bg-[#151515] text-white font-semibold lg:min-h-20 hover:bg-red-400 hover:text-black text-2xl "
             onClick={() => {
               setField({
                 date_field: indianDate,

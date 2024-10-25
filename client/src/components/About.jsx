@@ -13,7 +13,6 @@ const About = () => {
       >
         About Us
       </motion.h3>
-
       {/* Mission Section Animation */}
       <motion.div
         className="w-full text-center text-2xl mb-6"
@@ -24,7 +23,6 @@ const About = () => {
         We are a group of individuals dedicated to making your trading journey
         profitable and empowering you to achieve financial freedom.
       </motion.div>
-
       {/* Vision Statement */}
       <motion.div
         className="w-full text-center text-xl mb-6"
@@ -35,7 +33,6 @@ const About = () => {
         Our mission is to provide the best resources and mentorship for traders
         of all levels, helping them navigate the markets with confidence.
       </motion.div>
-
       {/* Core Values */}
       <motion.div
         className="w-full text-center text-xl mb-6"
@@ -46,8 +43,7 @@ const About = () => {
         We believe in transparency, trust, and continuous learning, offering
         comprehensive guides, technical analysis, and real-time support.
       </motion.div>
-
-      {/* Call to Action */}
+      {/* Call to Action
       <motion.div
         className="w-full text-center text-lg mt-10"
         initial={{ opacity: 0, y: 100 }}
@@ -55,7 +51,7 @@ const About = () => {
         transition={{ duration: 1.2 }}
       >
         Join us today and start your journey toward a profitable trading career!
-      </motion.div>
+      </motion.div> */}
     </div>
   );
 };

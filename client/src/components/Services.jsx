@@ -15,10 +15,10 @@ const cardVariants = {
 const Services = () => {
   return (
     <div className="w-full h-fit flex flex-col gap-y-8">
-      <h3 className="text-6xl text-white">Services</h3>
+      <h3 className="text-6xl text-white text-center md:text-left">Services</h3>
 
       {/* Staggered container for service cards */}
-      <div className="flex justify-between gap-x-4">
+      <div className="flex flex-col mx-2 gap-y-8 xl:mx-0 justify-between items-center md:flex-row gap-x-4">
         {/* Service Cards with animations */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}

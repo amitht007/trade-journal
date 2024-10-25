@@ -59,30 +59,30 @@ const LoginPage = () => {
     <>
       {" "}
       <Navbar />
-      <div className="bg-grainy w-full h-screen bg-gradient-to-tr from-[#000000] via-[#161516] to-[#272524] flex items-center justify-center">
+      <div className="bg-grainy w-full h-screen bg-gradient-to-tr from-[#000000] via-[#161516] to-[#272524] flex items-center justify-center pb-40">
         <div className="grid grid-cols-1 md:grid-cols-[2fr_2fr] gap-10 w-full h-auto align-middle">
           {/* First Column with Heading/Logo */}
-          <div className="flex flex-col justify-center items-end text-right h-full">
+          <div className="text-center flex flex-col justify-center items-end lg:text-right h-full ">
             <div>
-              <div className="relative w-[700px] mb-4">
-                <div className="absolute bg-[#0000008f] h-[50px] w-[680px] blur-lg"></div>
+              <div className="relative xl:w-[700px] mb-4 ">
+                <div className="hidden xl:flex absolute bg-[#0000008f] h-[50px] w-[680px] blur-lg"></div>
                 <div>
                   <h2 className="text-6xl font-bold text-white drop-shadow-xl">
                     Welcome Back, Trader!
                   </h2>
                   <p className="text-[#8e8e8e]">
-                    We are there where is no one!
+                    We are there, where there is no one!
                   </p>
                 </div>
               </div>
             </div>
-            <div className="flex justify-center w-full">
+            <div className="hidden lg:flex justify-center w-full">
               <img src={bull} className="w-[300px] h-[300px]" alt="Bull Logo" />
             </div>
           </div>
 
           {/* Second Column with Form */}
-          <div className="w-[75%] h-full">
+          <div className="lg:w-[75%] h-full place-items-center px-4 lg:px-0">
             <h3 className="text-4xl text-left w-full font-bold text-white mb-6 tracking-widest">
               LOGIN
             </h3>
